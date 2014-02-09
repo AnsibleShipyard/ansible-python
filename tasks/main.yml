@@ -1,0 +1,21 @@
+---
+- include: Debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Check if Python {{python_version}} is installed
+  shell: "{{python_path}}/bin/python{{python_version[:-2]}} --version"
+  register: command_result
+  ignore_errors: True
+
+- name: Download python {{python_version}}
+  get_url: url={{python_base_url}} dest=/tmp/{{python_file_name}}
+  when: "'not found' in command_result.stderr"
+
+- name: Unpack python {{python_version}}
+  command: tar -xvzf {{python_file_name}} chdir=/tmp
+  when: "'not found' in command_result.stderr"
+
+- name: Compile and install python {{python_version}}
+  shell: ./configure --prefix={{python_path}}/ && make && make altinstall chdir=/tmp/{{python_file_tag}}
+  sudo: true
+  when: "'not found' in command_result.stderr"

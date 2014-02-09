@@ -1,0 +1,7 @@
+---
+python_playbook_version: "0.1.0"
+python_version: "3.3.3"
+python_file_tag: "Python-{{python_version}}"
+python_file_name: "{{python_file_tag}}.tgz"
+python_base_url: "http://www.python.org/ftp/python/{{python_version}}/{{python_file_name}}"
+python_path: "/usr/local"
