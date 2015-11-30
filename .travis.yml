@@ -3,7 +3,6 @@ language: python
 python: "2.7"
 
 env:
-  - SITE: playbook.yml
   - PYTHONVERSION: 3.5.0
   - PYTHONVERSION: 3.3.3
   - PYTHONVERSION: 2.7.10
@@ -20,7 +19,7 @@ install:
 
 script:
   # Check the role/playbook's syntax.
-  - "ansible-playbook -i ci/inventory ci/$SITE --syntax-check"
+  - "ansible-playbook -i ci/inventory ci/playbook.yml --syntax-check"
 
   # Run the ansible ci playbook
   - "ansible-playbook -i ci/inventory ci/playbook.yml --connection=local --sudo -vvvv -e python_version=$PYTHONVERSION -e 'python_path=/usr/local/python/{{ python_version }}'"
