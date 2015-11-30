@@ -1,0 +1,16 @@
+---
+
+- name: Test Playbook
+  hosts: localhost
+  connection: local
+  sudo: yes
+  
+  roles:
+    - { role: ../../ }
+    
+  tasks:
+    - name: Verify python version
+      command: "{{ python_path }}/bin/python{{ python_base_version }} --version"
+      register: command_result
+      failed_when: command_result.stderr != 'Python {{ python_version }}' and command_result.stdout != 'Python {{ python_version }}'
+
