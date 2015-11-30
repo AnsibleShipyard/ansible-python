@@ -6,3 +6,4 @@ python_file_name: "{{ python_file_tag }}.tgz"
 python_base_url: http://www.python.org/ftp/python
 python_package_url: "{{ python_base_url }}/{{ python_version }}/{{ python_file_name }}"
 python_path: /usr/local
+
