@@ -1,11 +1,5 @@
 ---
 - name: Install os packages
-  yum: name={{ [
-    '"@Development tools"', 
-    'zlib-devel', 
-    'bzip2-devel', 
-    'openssl-devel', 
-    'ncurses-devel', 
-    'sqlite-devel'
-    ] | join(',') }} state=present
+  yum: name={{ item }} state=present
+  with_items: python_yum_packages
 
