@@ -1,14 +1,4 @@
 ---
 - name: Install os packages
-  apt: pkg={{item}} state=present update_cache=yes
-  with_items: 
-    - build-essential
-    - libreadline-gplv2-dev
-    - libncursesw5-dev
-    - libssl-dev
-    - libsqlite3-dev
-    - tk-dev
-    - libgdbm-dev
-    - libc6-dev
-    - libbz2-dev
-    - wget
+  apt: pkg={{ item }} state=present update_cache=yes
+  with_items: python_apt_packages
